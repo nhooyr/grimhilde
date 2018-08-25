@@ -12,7 +12,7 @@ import (
 	"google.golang.org/appengine"
 )
 
-type Config struct {
+type config struct {
 	VCS        string `json:"vcs"`
 	VCSBaseURL string `json:"vcs_base_url"`
 }
@@ -31,13 +31,13 @@ func main() {
 }
 
 func redirector() (http.Handler, error) {
-	config, err := ioutil.ReadFile("config.json")
+	configBytes, err := ioutil.ReadFile("config.json")
 	if err != nil {
 		return nil, fmt.Errorf("failed to read config.json: %v", err)
 	}
 
-	var c Config
-	err = json.Unmarshal(config, &c)
+	var c config
+	err = json.Unmarshal(configBytes, &c)
 	if err != nil {
 		return nil, fmt.Errorf("failed to unmarshal config.json into redirector: %v", err)
 	}
