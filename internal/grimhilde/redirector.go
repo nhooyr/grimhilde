@@ -48,9 +48,10 @@ func (rd *Redirector) vcsURL(repoName string) string {
 var godocURL = &url.URL{
 	Scheme: "https",
 	Host:   "godoc.org",
+	Path:   "/",
 }
 
-func (rd *Redirector) docURL(vanityImport string) string {
+func docURL(vanityImport string) string {
 	docURL := *godocURL
 	docURL.Path = path.Join(docURL.Path, vanityImport)
 	return docURL.String()
@@ -78,7 +79,7 @@ func (rd *Redirector) redirect(w http.ResponseWriter, r *http.Request) {
 	}
 
 	vanityImport := rd.vanityImport(r.Host, repoName)
-	docURL := rd.docURL(vanityImport)
+	docURL := docURL(vanityImport)
 
 	redirectFn(docURL)
 }
