@@ -9,11 +9,14 @@ import (
 	"strings"
 )
 
+// Redirector implements a redirector from vanity Go import paths
+// to their real source for both humans and `go get`.
 type Redirector struct {
 	VCS        string
 	VCSBaseURL *url.URL
 }
 
+// ServeHTTP implements http.Handler.
 func (rd *Redirector) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Cache-Control", "public")
 
