@@ -10,8 +10,8 @@ import (
 )
 
 type Redirector struct {
-	VCS        string   `json:"vcs"`
-	VCSBaseURL *url.URL `json:"vcs_base_url"`
+	VCS        string
+	VCSBaseURL *url.URL
 }
 
 func (rd *Redirector) ServeHTTP(w http.ResponseWriter, r *http.Request) {
