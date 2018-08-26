@@ -10,7 +10,7 @@ go get go.nhooyr.io/grimhilde
 
 ## Usage
 
-First modify the [config_example.json](./cmd/grimhilded/config_example.json) to suit your needs.
+First modify the [config_example.json](./cmd/grimhilde/config_example.json) to suit your needs.
 
 Then rename it to `config.json` and run:
 
