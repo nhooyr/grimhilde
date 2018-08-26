@@ -6,7 +6,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/nhooyr/grimhilde/internal/grimhilde"
+	"go.nhooyr.io/grimhilde/internal/grimhilde"
 )
 
 func TestRedirector(t *testing.T) {

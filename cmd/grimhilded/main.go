@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	stdlog "log"
+	"log"
 	"net/http"
 	"net/url"
 
-	"github.com/nhooyr/grimhilde/internal/grimhilde"
+	"go.nhooyr.io/grimhilde/internal/grimhilde"
 	"google.golang.org/appengine"
 )
 
@@ -18,11 +18,11 @@ type config struct {
 }
 
 func main() {
-	stdlog.SetFlags(0)
+	log.SetFlags(0)
 
 	rd, err := redirector()
 	if err != nil {
-		stdlog.Fatalf("failed to create redirector: %v", err)
+		log.Fatalf("failed to create redirector: %v", err)
 	}
 
 	http.Handle("/", rd)
