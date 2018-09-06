@@ -15,5 +15,5 @@ First modify the [config_example.json](./cmd/grimhilde/config_example.json) to s
 Then rename it to `config.json` and run:
 
 ```
-gcloud app deploy cmd/grimhilde
+gcloud app deploy --stop-previous-version cmd/grimhilde
 ```
