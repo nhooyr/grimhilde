@@ -76,12 +76,12 @@ func TestRedirector(t *testing.T) {
 		{
 			name:     "package",
 			path:     "/grimhilde",
-			location: "https://godoc.org/go.bar.io/grimhilde",
+			location: "https://github.com/nhooyr/grimhilde",
 		},
 		{
 			name:     "subpackage",
 			path:     "/grimhilde/bar/meow/foo",
-			location: "https://godoc.org/go.bar.io/grimhilde",
+			location: "https://github.com/nhooyr/grimhilde",
 		},
 	}
 

@@ -45,18 +45,6 @@ func (rd *Redirector) vcsURL(repoName string) string {
 	return vcsURL.String()
 }
 
-var godocURL = &url.URL{
-	Scheme: "https",
-	Host:   "godoc.org",
-	Path:   "/",
-}
-
-func docURL(vanityImport string) string {
-	docURL := *godocURL
-	docURL.Path = path.Join(docURL.Path, vanityImport)
-	return docURL.String()
-}
-
 func (rd *Redirector) redirectGoGet(w http.ResponseWriter, r *http.Request) {
 	tag := rd.goGetImportTag(r)
 
@@ -65,23 +53,12 @@ func (rd *Redirector) redirectGoGet(w http.ResponseWriter, r *http.Request) {
 }
 
 func (rd *Redirector) redirect(w http.ResponseWriter, r *http.Request) {
-	redirectFn := func(url string) {
-		// We want to send a StatusTemporaryRedirect and not a StatusSeeOther
-		// because we want the method to stay the same and we do not want a StatusFound
-		// because we want to be explicit about the method remaining the same.
-		http.Redirect(w, r, url, http.StatusTemporaryRedirect)
-	}
-
 	repoName := leadingPathElement(r.URL.Path)
-	if repoName == "" {
-		redirectFn(rd.VCSBaseURL.String())
-		return
-	}
-
-	vanityImport := rd.vanityImport(r.Host, repoName)
-	docURL := docURL(vanityImport)
-
-	redirectFn(docURL)
+	vcsURL := rd.vcsURL(repoName)
+	// We want to send a StatusTemporaryRedirect and not a StatusSeeOther
+	// because we want the method to stay the same and we do not want a StatusFound
+	// because we want to be explicit about the method remaining the same.
+	http.Redirect(w, r, vcsURL, http.StatusTemporaryRedirect)
 }
 
 // leadingPathElement returns the leading element of the path without the root slash.
