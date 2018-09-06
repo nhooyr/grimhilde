@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-// Redirector implements a redirector from vanity Go import paths
+// Redirector implements a redirector from vanity URLs
 // to their real source for both humans and `go get`.
 type Redirector struct {
 	VCS        string
