@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"go.nhooyr.io/grimhilde/internal/grimhilde"
+	"nhooyr.io/grimhilde/internal/grimhilde"
 	"google.golang.org/appengine"
 )
 
